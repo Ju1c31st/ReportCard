@@ -94,13 +94,15 @@ public class ReportCard {
 	}
 
 	public boolean allPasses(double passMark) {
-		boolean passer = false; //assuming no one passed
+		boolean pass = false; //assuming no one passed
 		for(int i=0; i<marks.length; i++){
-			if(marks[i] >= passMark){
-				passer = true;
+			if(marks[i] <= passMark){
+				return pass = false;
+			} else {
+				pass = true;
 			}
 		}
-		return passer; //to be completed
+		return pass; //to be completed
 	}
 
 	/**
@@ -140,14 +142,33 @@ public class ReportCard {
 	 * square root of 207.53 = 14.4
 	 */
 	public double stdDev() {
-		double avg = average();
-		double[] val = new double[marks.length];
+		double totalPow = 0;
+		double power = 0;
+		double stDev = 0;
+		
 		for(int i=0; i<marks.length; i++){
+			totalPow += marks[i];
+			power += Math.pow(marks[i], 2);
+		    stDev = Math.sqrt(i*power - Math.pow(totalPow, 2))/i;
+		}
+		return stDev;
+		
+		/*double avg = average();
+		double[] val = new double[marks.length];
+		double len = marks.length;
+		double[] square = new double[marks.length];
+		double[] squared = new double[marks.length];
+		double total = 0;
+		for(int i=0; i<marks.length-1; i++){
 			val[i] = marks[i];
-			           
+			square[i] = (val[i] - avg);
+			squared[i] = square[i]*square[i]; 
+			total = squared[i] + squared[i+1];
+			total /= len;    
 		}
 		
-		return 0; //to be completed
+		return total; //to be completed
+		*/
 	}
 
 	/**
@@ -179,7 +200,26 @@ public class ReportCard {
 	 * {"Credit", "Fail", "High Distinction"}
 	 */
 	public String[] getGrades() {
-		return new String[10];//to be completed
+		String[] grade = new String[marks.length];
+		for(int i=0; i<marks.length; i++){
+			if(marks[i] < 50){
+				grade[i] = "Fail";
+			}
+			if(marks[i] >= 50 && marks[i] < 65){
+				grade[i] = "Pass";
+			}
+			if(marks[i] >= 65 && marks[i] < 75){
+				grade[i] = "Credit";
+			}
+			if(marks[i] >= 75 && marks[i] < 85){
+				grade[i] = "Distinction";
+			}
+			if(marks[i] >= 85){
+				grade[i] = "High Distinction";
+			}
+		}
+		return grade;
+		//to be completed
 	}
 
 	/**
@@ -188,6 +228,6 @@ public class ReportCard {
 	 */
 	public int countUnits() {
 		
-		return 0; //to be completed
+		return marks.length; //to be completed
 	}
 }
