@@ -86,13 +86,11 @@ public class ReportCard {
 	 * @return the average of all marks
 	 */
 	public double average() {
-		double count = 0;
 		double sum = 0;
 		for(int i=0; i<marks.length; i++){
 			sum += marks[i];
-			count++;
 		}
-		return sum/count; //completed
+		return sum/marks.length; //completed
 	}
 
 	public boolean allPasses(double passMark) {
