@@ -140,6 +140,12 @@ public class ReportCard {
 	 * square root of 207.53 = 14.4
 	 */
 	public double stdDev() {
+		double avg = average();
+		double[] val = new double[marks.length];
+		for(int i=0; i<marks.length; i++){
+			val[i] = marks[i];
+			           
+		}
 		
 		return 0; //to be completed
 	}
