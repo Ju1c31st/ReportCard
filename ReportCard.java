@@ -142,33 +142,17 @@ public class ReportCard {
 	 * square root of 207.53 = 14.4
 	 */
 	public double stdDev() {
-		double totalPow = 0;
-		double power = 0;
-		double stDev = 0;
+		double mean = average();
+		double n = marks.length;
+		double temp = 0;
+		double var = 0;
 		
-		for(int i=0; i<marks.length; i++){
-			totalPow += marks[i];
-			power += Math.pow(marks[i], 2);
-		    stDev = Math.sqrt(i*power - Math.pow(totalPow, 2))/i;
+		//variance
+		for(double a: marks){
+			temp += (a-mean)*(a-mean);
+			var = temp/n;
 		}
-		return stDev;
-		
-		/*double avg = average();
-		double[] val = new double[marks.length];
-		double len = marks.length;
-		double[] square = new double[marks.length];
-		double[] squared = new double[marks.length];
-		double total = 0;
-		for(int i=0; i<marks.length-1; i++){
-			val[i] = marks[i];
-			square[i] = (val[i] - avg);
-			squared[i] = square[i]*square[i]; 
-			total = squared[i] + squared[i+1];
-			total /= len;    
-		}
-		
-		return total; //to be completed
-		*/
+		return Math.sqrt(var);
 	}
 
 	/**
