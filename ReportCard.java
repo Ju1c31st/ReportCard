@@ -112,10 +112,10 @@ public class ReportCard {
 	 * @param percentage
 	 */
 	public void scale(double percentage) {
-		double boost = percentage/100;
-		double scaleBy;
+		double boost = percentage/100; //puts the percentage in decimal form for manipulation
+		double scaleBy; //this is how much % of the number we are scaling up 
 		for(int i=0; i<marks.length; i++){
-			 scaleBy = marks[i]*boost; 
+			 scaleBy = marks[i]*boost; //so we add this % amount to get the increase we want
 			 marks[i] += scaleBy;
 		}
 		//completed
